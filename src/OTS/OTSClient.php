@@ -2,7 +2,7 @@
 
 namespace Aliyun\OTS;
 
-use Aliyun\OTS\Handlers;
+use Aliyun\OTS\Handlers\OTSHandlers;
 
 /**
  * OTSClient.php 是 Aliyun OTS SDK for PHP 的入口。更多关于OTS的信息，请参考阿里云官网OTS文档 https://docs.aliyun.com/?/pub/ots#/pub/ots
@@ -22,6 +22,9 @@ class OTSClient
     /** @var OTSClientConfig */
     private $config;
 
+    /** @var OTSHandlers */
+    private $handlers;
+
     /**
      * OTSClient的构造函数
      * @api
@@ -30,13 +33,13 @@ class OTSClient
      * @example "examples/ErrorHandling.php" 20 错误处理样例
      * @example "examples/NewClient2.php" 20 所有可选参数
      */
-    public function __construct(array $args) 
+    public function __construct(array $args)
     {
         $this->config = new \Aliyun\OTS\OTSClientConfig($args);
         $this->handlers = new \Aliyun\OTS\Handlers\OTSHandlers($this->config);
     }
 
-    /** 返回 OTSClientConfig 对象 
+    /** 返回 OTSClientConfig 对象
      * @example "examples/NewClientLogDefined.php" 20 指定日志输出方式
      * @example "examples/NewClientLogClosed.php" 20 关闭OTSClient中的日志
      */
@@ -55,7 +58,7 @@ class OTSClient
      * @throws OTSServerException 当OTS服务端返回错误时
      * @example "examples/CreateTable.php" 20
      */
-    public function createTable(array $request) 
+    public function createTable(array $request)
     {
         return $this->handlers->doHandle("CreateTable", $request);
     }
@@ -70,7 +73,7 @@ class OTSClient
      * @throws OTSServerException 当OTS服务端返回错误时
      * @example "examples/DeleteTable.php" 40
      */
-    public function deleteTable(array $request) 
+    public function deleteTable(array $request)
     {
         return $this->handlers->doHandle("DeleteTable", $request);
     }
@@ -80,12 +83,12 @@ class OTSClient
      * API说明：https://help.aliyun.com/document_detail/27316.html
      * @api
      * @param [] $request 请求参数
-     * @return [] 请求返回 
+     * @return [] 请求返回
      * @throws OTSClientException 当参数检查出错或服务端返回校验出错时
      * @throws OTSServerException 当OTS服务端返回错误时
      * @example "examples/DescribeTable.php" 40
      */
-    public function describeTable(array $request) 
+    public function describeTable(array $request)
     {
         return $this->handlers->doHandle("DescribeTable", $request);
     }
@@ -96,13 +99,13 @@ class OTSClient
      * API说明：https://help.aliyun.com/document_detail/27315.html
      * @api
      * @param [] $request 请求参数
-     * @return [] 请求返回 
+     * @return [] 请求返回
      * @throws OTSClientException 当参数检查出错或服务端返回校验出错时
      * @throws OTSServerException 当OTS服务端返回错误时
      * @example "examples/UpdateTable.php" 40
      * @example "examples/UpdateTable2.php" 40 只更新读或写CU的其中一项
      */
-    public function updateTable(array $request) 
+    public function updateTable(array $request)
     {
         return $this->handlers->doHandle("UpdateTable", $request);
     }
@@ -112,12 +115,12 @@ class OTSClient
      * API说明：https://help.aliyun.com/document_detail/27313.html
      * @api
      * @param [] $request 请求参数，为空。
-     * @return [] 请求返回 
+     * @return [] 请求返回
      * @throws OTSClientException 当参数检查出错或服务端返回校验出错时
      * @throws OTSServerException 当OTS服务端返回错误时
      * @example "examples/ListTable.php" 40
      */
-    public function listTable(array $request) 
+    public function listTable(array $request)
     {
         return $this->handlers->doHandle("ListTable", $request);
     }
@@ -143,12 +146,12 @@ class OTSClient
      * API说明：https://help.aliyun.com/document_detail/27306.html
      * @api
      * @param [] $request 请求参数
-     * @return [] 请求返回 
+     * @return [] 请求返回
      * @throws OTSClientException 当参数检查出错或服务端返回校验出错时
      * @throws OTSServerException 当OTS服务端返回错误时
      * @example "examples/PutRow.php" 40
      */
-    public function putRow(array $request) 
+    public function putRow(array $request)
     {
         return $this->handlers->doHandle("PutRow", $request);
     }
@@ -158,13 +161,13 @@ class OTSClient
      * API说明：https://help.aliyun.com/document_detail/27305.html
      * @api
      * @param [] $request 请求参数
-     * @return [] 请求返回 
+     * @return [] 请求返回
      * @throws OTSClientException 当参数检查出错或服务端返回校验出错时
      * @throws OTSServerException 当OTS服务端返回错误时
      * @example "examples/GetRow.php" 60
      * @example "examples/GetRow2.php" 60 指定读该行的某几列
      */
-    public function getRow(array $request) 
+    public function getRow(array $request)
     {
         return $this->handlers->doHandle("GetRow", $request);
     }
@@ -174,13 +177,13 @@ class OTSClient
      * API说明：https://help.aliyun.com/document_detail/27307.html
      * @api
      * @param [] $request 请求参数
-     * @return [] 请求返回 
+     * @return [] 请求返回
      * @throws OTSClientException 当参数检查出错或服务端返回校验出错时
      * @throws OTSServerException 当OTS服务端返回错误时
      * @example "examples/UpdateRow1.php" 60  更新或追加该行的某几列
      * @example "examples/UpdateRow2.php" 60  删除该行的某几列
      */
-    public function updateRow(array $request) 
+    public function updateRow(array $request)
     {
         return $this->handlers->doHandle("UpdateRow", $request);
     }
@@ -190,12 +193,12 @@ class OTSClient
      * API说明：https://help.aliyun.com/document_detail/27308.html
      * @api
      * @param [] $request 请求参数
-     * @return [] 请求返回 
+     * @return [] 请求返回
      * @throws OTSClientException 当参数检查出错或服务端返回校验出错时
      * @throws OTSServerException 当OTS服务端返回错误时
      * @example "examples/DeleteRow.php" 60
      */
-    public function deleteRow(array $request) 
+    public function deleteRow(array $request)
     {
         return $this->handlers->doHandle("DeleteRow", $request);
     }
@@ -206,7 +209,7 @@ class OTSClient
      * 请注意，BatchGetRow在部分行读取失败时，会在返回的$response中表示，而不是抛出异常。请参见样例：处理BatchGetRow的返回。
      * @api
      * @param [] $request 请求参数
-     * @return [] 请求返回 
+     * @return [] 请求返回
      * @throws OTSClientException 当参数检查出错或服务端返回校验出错时
      * @throws OTSServerException 当OTS服务端返回错误时
      * @example "examples/BatchGetRow1.php" 60 读取一个表的多行数据
@@ -214,7 +217,7 @@ class OTSClient
      * @example "examples/BatchGetRow3.php" 60 指定读取某几列
      * @example "examples/BatchGetRow4.php" 60 处理BatchGetRow的返回
      */
-    public function batchGetRow(array $request) 
+    public function batchGetRow(array $request)
     {
         return $this->handlers->doHandle("BatchGetRow", $request);
     }
@@ -225,7 +228,7 @@ class OTSClient
      * 请注意，BatchWriteRow在部分行读取失败时，会在返回的$response中表示，而不是抛出异常。请参见样例：处理BatchWriteRow的返回。
      * @api
      * @param [] $request 请求参数
-     * @return [] 请求返回 
+     * @return [] 请求返回
      * @throws OTSClientException 当参数检查出错或服务端返回校验出错时
      * @throws OTSServerException 当OTS服务端返回错误时
      * @example "examples/BatchWriteRow1.php" 40 写入几行数据
@@ -233,7 +236,7 @@ class OTSClient
      * @example "examples/BatchWriteRow3.php" 40 删除几行数据
      * @example "examples/BatchWriteRow4.php" 80 处理BatchWriteRow的返回
      */
-    public function batchWriteRow(array $request) 
+    public function batchWriteRow(array $request)
     {
         return $this->handlers->doHandle("BatchWriteRow", $request);
     }
@@ -246,14 +249,14 @@ class OTSClient
      * API说明：https://help.aliyun.com/document_detail/27309.html
      * @api
      * @param [] $request 请求参数
-     * @return [] 请求返回 
+     * @return [] 请求返回
      * @throws OTSClientException 当参数检查出错或服务端返回校验出错时
      * @throws OTSServerException 当OTS服务端返回错误时
      * @example "examples/GetRange1.php" 60 读取一个范围的数据，遇到截断继续读取
      * @example "examples/GetRange2.php" 60 读取一个范围的数据，并指定若干列
      * @example "examples/GetRange3.php" 60 指定最多读取多少行
      */
-    public function getRange(array $request) 
+    public function getRange(array $request)
     {
         return $this->handlers->doHandle("GetRange", $request);
     }
