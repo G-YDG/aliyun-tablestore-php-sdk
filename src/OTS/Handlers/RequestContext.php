@@ -1,7 +1,8 @@
 <?php
+
 namespace Aliyun\OTS\Handlers;
-use Aliyun\OTS;
-use GuzzleHttp\Client;
+
+use Aliyun\OTS\OTSClientConfig;
 
 class RequestContext
 {
@@ -15,6 +16,7 @@ class RequestContext
     public $responseHeaders;
     public $responseHttpStatus;
     public $responseBody;
+    public $responseReasonPhrase;
     public $otsServerException;
 
     public $clientConfig;
@@ -24,10 +26,7 @@ class RequestContext
     public $retryDelayInMilliSeconds;
     public $retryTimes;
 
-    public function __construct(
-        \Aliyun\OTS\OTSClientConfig $clientConfig, 
-        $httpClient, 
-        $apiName, $request)
+    public function __construct(OTSClientConfig $clientConfig, $httpClient, $apiName, $request)
     {
         $this->apiName = $apiName;
         $this->request = $request;
