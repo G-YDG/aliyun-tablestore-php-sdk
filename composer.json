@@ -1,9 +1,10 @@
 {
-	"name" : "aliyun/aliyun-tablestore-sdk-php",
+	"name" : "ydg/aliyun-tablestore-sdk-php",
 	"homepage" : "http://www.aliyun.com/product/ots",
 	"description" : "Aliyun Tablestore SDK for PHP",
 	"license": "MIT",
-	"authors" : [{
+	"authors" : [
+		{
 			"name" : "Aliyun Tablestore Team",
 			"homepage" : "http://www.aliyun.com/product/ots"
 		}
